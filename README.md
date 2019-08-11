@@ -1,31 +1,53 @@
-Webpack project starter with Pug, Sass/Stylus, jQuery, Babel and Yarn
-===================
+## Boilerplate for HTML development in AUKI
 
-The purpose if this webpack starter is to allow people to create websites without frameworks/libraries like React, Angular, Vue and only using simple but powerful technologies to build quality websites.
+### Cloning and Setting up the project
 
-## Technologies used
+- Clone the repository and run "npm install"
 
-- Templating: `Pug`
-- Styling: `Sass` *but you can also use stylus*
-- Scripting: `jQuery or plain Javascript`
-- JS Compiler: `Babel ES6`
+### Adding a new page
 
-## Features
+- New pages are to be created within the pages directory inside the src directory.
+- A couple of pages are created already for quick reference.
 
-- Well organized folder structure for view, styles and assets.
-- Webpack notifier on every compilation.
-- Compatibility with `manifest`, `browserconfig` and other external files you wish to include.
-- `Babel module resolver` configured to use alias and simplify the paths you need to import.
-- `Editorconfig`
-- Yarn instead NPM
-- PostCSS
+- In order for webpack to pick up these new pages, include them in the following array
 
-## Contributions
+  `const pagesArr = ["component1Page", "component2Page"];` on line 3 in the pages.js in the config directory.
 
-You can contribute directly to this repository or create a fork and peform your own modifications, feel free to use it in the way you want!
+- make sure to name the pug, scss and js file the same as the page name (check the existing pages to learn more).
 
-## Donations
+PENDING OPTIMISATIONS:
 
-You can of course help a little bit with some donation to buy more coffee :)
+- to automatically detect pages in the pages directory and create build files.
+- JS optimisations such as scope-hoisting, pre-evaluation and improving parsing.
 
-<a href="https://www.buymeacoffee.com/edgardo" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;" ></a>
+### Understanding the dist directory
+
+- Each page has 2 chunks of JS files, one within the corresponding page folder and one within the vendor directory.
+
+  -- `dist`
+
+  ---- `<page name>`
+
+  ------ `<page name>.html`
+
+  ------ `<page name>.css`
+
+  ------ `<page name>.js`
+
+  ---- `vendor`
+
+  ------ `<page name>`
+
+  -------- `<page name>.js`
+
+* Unfortunately at this point in time, I could not figure out a reliable and automated way to have a common vendor chunk for all the pages. This would mean there could be repetitions in the vendor folder.
+
+PENDING OPTIMISATIONS:
+
+- to create common vendor chunks.
+- to figure out a way to get the clean-webpack-plugin to work in multi-entry mode.
+- install webpack-spritesmith without vulnerabilities.
+- avoid double license entries in vendor chunks.
+- image optimisations.
+- code splitting.
+- dynamic image loading.

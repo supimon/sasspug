@@ -8,8 +8,6 @@
 
 # production
 /build
-
-# npmjs
 /dist
 
 # misc
